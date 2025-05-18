@@ -3,6 +3,15 @@
   "version": "1.0.0",
   "description": "data generator",
   "main": "index.js",
-  "author": "Andrew Shedov",
-  "license": "MIT"
+  "type": "module",
+  "author": {
+  "name": "Andrew Shedov",
+  "url": "https://shedov.top"
+},
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AndrewShedov/miniMaker"
+  }
 }
+

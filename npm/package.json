@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "data generator",
   "main": "index.js",
-  "author": "Твоё имя или ник",
+  "author": "Andrew Shedov",
   "license": "MIT"
 }

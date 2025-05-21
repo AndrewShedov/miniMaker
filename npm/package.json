@@ -1,6 +1,6 @@
 {
     "name": "mini-maker",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "data generator",
     "main": "index.js",
     "type": "module",

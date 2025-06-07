@@ -48,19 +48,25 @@ const sentence = ({ wordMin = 4, wordMax = 10, hashtagMin = 0, hashtagMax = 2 })
     ? sentenceWords.join(" ") + "."
     : sentenceWords.join(" ") + ".";
 };
+// /one sentence generator
 
+// text generator from sentences
 const sentences = ({ min = 1, max = 5, wordMin = 4, wordMax = 10, hashtagMin = 0, hashtagMax = 2 }) => {
   const count = int({ min, max });
   return Array.from({ length: count }, () =>
     sentence({ wordMin, wordMax, hashtagMin, hashtagMax })
   ).join(' ');
 };
+// /text generator from sentences
 
+// generate text block
 const generateTextBlock = (params) => {
   const text = sentences(params);
   return { text, hashtags: extractHashtags(text) };
 };
+// /generate text block
 
+// full text with hashtags
 const fullText = {
   title: { sentences: generateTextBlock },
   text: { sentences: generateTextBlock },
@@ -78,6 +84,7 @@ const fullText = {
     };
   }
 };
+// /full text with hashtags
 
 const emailRandom = () => `${randomBytes(14).toString("hex")}@gmail.com`;
 

@@ -12,7 +12,7 @@ const getByPath = (obj, path) => {
   return path.split('.').reduce((acc, part) => acc?.[part], obj);
 };
 
-// One sentence generator
+// one sentence generator
 const sentence = ({ wordMin = 4, wordMax = 10, hashtagMin = 0, hashtagMax = 2 }) => {
   const wordsCount = int({ min: wordMin, max: wordMax });
   const sentenceWords = Array.from({ length: wordsCount }, () => word(storage.words));
@@ -42,7 +42,7 @@ const sentence = ({ wordMin = 4, wordMax = 10, hashtagMin = 0, hashtagMax = 2 })
     ? sentenceWords.join(" ") + "."
     : sentenceWords.join(" ") + ".";
 };
-// /One sentence generator
+// /one sentence generator
 
 // text generator from sentences
 const sentences = ({ min = 1, max = 5, wordMin = 4, wordMax = 10, hashtagMin = 0, hashtagMax = 2 }) => {

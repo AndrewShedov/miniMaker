@@ -1,17 +1,20 @@
 {
-    "name": "mini-maker",
-    "version": "0.1.1",
-    "description": "data generator",
-    "main": "index.js",
-    "type": "module",
-    "author": {
-        "name": "Andrew Shedov",
-        "url": "https://shedov.top"
-    },
-    "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/AndrewShedov/miniMaker.git"
-    },
-    "homepage": "https://github.com/AndrewShedov/miniMaker"
+  "name": "mini-maker",
+  "version": "0.1.1",
+  "description": "data generator",
+  "main": "index.js",
+  "type": "module",
+  "exports": {
+    ".": "./index.js"
+  },
+  "author": {
+    "name": "Andrew Shedov",
+    "url": "https://shedov.top"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndrewShedov/miniMaker.git"
+  },
+  "homepage": "https://github.com/AndrewShedov/miniMaker"
 }

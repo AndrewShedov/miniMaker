@@ -3,7 +3,7 @@ import path from 'path';
 import { randomBytes } from "node:crypto";
 import {
   int, pick, extractHashtags, cleanHashtag, word, fisherYatesShuffle
-} from './helpers/utils.js';
+} from './utils/index.js';
 
 // path to custom - mini-maker-storage.json
 const dataPath = path.resolve(process.cwd(), 'src/utils/mini-maker/mini-maker-storage.json');

@@ -5,18 +5,24 @@ import {
   int, pick, extractHashtags, cleanHashtag, word, fisherYatesShuffle
 } from './helpers/utils.js';
 
-const dataPath = path.resolve(import.meta.dirname || path.dirname(process.argv[1]), 'mini-maker-storage.json');
+// path to custom - mini-maker-storage.json
+const dataPath = path.resolve(process.cwd(), 'src/utils/mini-maker/mini-maker-storage.json');
+// /path to custom - mini-maker-storage.json
+
+if (!fs.existsSync(dataPath)) {
+  throw new Error(`[mini-maker] storage file not found at ${dataPath}. Please create it manually.`);
+}
+
 const storage = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
 
 const getByPath = (obj, path) => {
   return path.split('.').reduce((acc, part) => acc?.[part], obj);
 };
 
-// one sentence generator
+// One sentence generator
 const sentence = ({ wordMin = 4, wordMax = 10, hashtagMin = 0, hashtagMax = 2 }) => {
   const wordsCount = int({ min: wordMin, max: wordMax });
   const sentenceWords = Array.from({ length: wordsCount }, () => word(storage.words));
-
   const availableTags = [...new Set(storage.hashtags)];
   const shuffledTags = fisherYatesShuffle(availableTags);
   const hashtagsCount = Math.min(int({ min: hashtagMin, max: hashtagMax }), availableTags.length);
@@ -42,26 +48,19 @@ const sentence = ({ wordMin = 4, wordMax = 10, hashtagMin = 0, hashtagMax = 2 })
     ? sentenceWords.join(" ") + "."
     : sentenceWords.join(" ") + ".";
 };
-// /one sentence generator
 
-// text generator from sentences
 const sentences = ({ min = 1, max = 5, wordMin = 4, wordMax = 10, hashtagMin = 0, hashtagMax = 2 }) => {
   const count = int({ min, max });
   return Array.from({ length: count }, () =>
     sentence({ wordMin, wordMax, hashtagMin, hashtagMax })
   ).join(' ');
 };
-// text generator from sentences
 
-// generate text block
 const generateTextBlock = (params) => {
   const text = sentences(params);
   return { text, hashtags: extractHashtags(text) };
 };
-// /generate text block
 
-
-// full text with hashtags
 const fullText = {
   title: { sentences: generateTextBlock },
   text: { sentences: generateTextBlock },
@@ -79,8 +78,6 @@ const fullText = {
     };
   }
 };
-// /full text with hashtags
-
 
 const emailRandom = () => `${randomBytes(14).toString("hex")}@gmail.com`;
 
@@ -108,7 +105,6 @@ const value = (value = {}) => {
 const valueOne = (value = {}) => {
   const storageKey = value.key ?? 'objectsIdUsers';
   const storageArray = getByPath(storage, storageKey) ?? [];
-
   if (!Array.isArray(storageArray) || storageArray.length === 0) return null;
 
   const shuffled = fisherYatesShuffle(storageArray);

@@ -2,15 +2,20 @@ import fs from 'fs';
 import path from 'path';
 import { randomBytes } from "node:crypto";
 import {
-  int, pick, extractHashtags, cleanHashtag, word, fisherYatesShuffle
+  int,
+  pick,
+  extractHashtags,
+  cleanHashtag,
+  word,
+  fisherYatesShuffle
 } from './utils/index.js';
 
-// path to custom - mini-maker-storage.json
-const dataPath = path.resolve(process.cwd(), 'src/utils/mini-maker/mini-maker-storage.json');
-// /path to custom - mini-maker-storage.json
+// path to - mini-maker-storage.json
+const dataPath = path.resolve(process.cwd(), './mini-maker-storage.json');
+// /path to - mini-maker-storage.json
 
 if (!fs.existsSync(dataPath)) {
-  throw new Error(`[mini-maker] storage file not found at ${dataPath}. Please create it manually.`);
+  throw new Error(`mini-maker-storage.json not found at ${dataPath}.`);
 }
 
 const storage = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
@@ -19,7 +24,7 @@ const getByPath = (obj, path) => {
   return path.split('.').reduce((acc, part) => acc?.[part], obj);
 };
 
-// One sentence generator
+// one sentence generator
 const sentence = ({ wordMin = 4, wordMax = 10, hashtagMin = 0, hashtagMax = 2 }) => {
   const wordsCount = int({ min: wordMin, max: wordMax });
   const sentenceWords = Array.from({ length: wordsCount }, () => word(storage.words));

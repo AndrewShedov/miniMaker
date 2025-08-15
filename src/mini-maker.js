@@ -10,9 +10,7 @@ import {
   fisherYatesShuffle
 } from './utils/index.js';
 
-// path to - mini-maker-storage.json
 const dataPath = path.resolve(process.cwd(), './mini-maker-storage.json');
-// /path to - mini-maker-storage.json
 
 if (!fs.existsSync(dataPath)) {
   throw new Error(`mini-maker-storage.json not found at ${dataPath}.`);
